@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "Acme-Showroom",
+                "projectName": "Acme-Showroom",
+                "workingDirectory": "c:\\WSSimRel\\Acme-Showroom",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "Acme-Showroom",
+                "projectName": "Acme-Showroom",
+                "workingDirectory": "c:\\WSSimRel\\Acme-Showroom",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2017 Universidad de Sevilla 
+	* * The use of this project is hereby consipained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Admin accounts -->
+
+    <bean id="userAccountAdmin" class="security.UserAccount">
+        <property name="username" value="admin"/>
+        <property name="password"
+                  value="21232f297a57a5a743894a0e4a801fc3"/>
+        <property name="authorities">
+            <list>
+                <bean class="security.Authority">
+                    <property name="authority" value="ADMINISTRATOR"/>
+                </bean>
+            </list>
+        </property>
+        <property name="active" value="true"/>
+    </bean>
+
+    <!-- User accounts -->
+
+    <bean id="userAccountUser1" class="security.UserAccount">
+        <property name="username" value="user1"/>
+        <property name="password"
+                  value="24c9e15e52afc47c225b757e7bee1f9d"/>
+        <property name="authorities">
+            <list>
+                <bean class="security.Authority">
+                    <property name="authority" value="USER"/>
+                </bean>
+            </list>
+        </property>
+        <property name="active" value="true"/>
+    </bean>
+
+    <bean id="userAccountUser2" class="security.UserAccount">
+        <property name="username" value="user2"/>
+        <property name="password"
+                  value="7e58d63b60197ceb55a1c487989a3720"/>
+        <property name="authorities">
+            <list>
+                <bean class="security.Authority">
+                    <property name="authority" value="USER"/>
+                </bean>
+            </list>
+        </property>
+        <property name="active" value="true"/>
+    </bean>
+
+
+    <bean id="userAccountUser3" class="security.UserAccount">
+        <property name="username" value="user3"/>
+        <property name="password"
+                  value="7e58d63b60197ceb55a1c487989a3720"/>
+        <property name="authorities">
+            <list>
+                <bean class="security.Authority">
+                    <property name="authority" value="USER"/>
+                </bean>
+            </list>
+        </property>
+        <property name="active" value="true"/>
+    </bean>
+
+    <!-- Actors -->
+
+    <!-- Administrators Actors -->
+
+    <bean id="administrator1" class="domain.Administrator">
+        <property name="name" value="Javier"/>
+        <property name="surname" value="Llach"/>
+        <property name="email" value="javierll@gmail.com"/>
+        <property name="phone" value="666777888"/>
+        <property name="address" value="C/ Beatriz de Suabia 76."/>
+        <property name="userAccount" ref="userAccountAdmin"/>
+        <property name="follows">
+            <list>
+            </list>
+        </property>
+        <property name="topics">
+            <list>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Users Actors-->
+
+    <bean id="user1" class="domain.User">
+        <property name="name" value="Nombre usuario 1"/>
+        <property name="surname" value="Apellidos usuario 1"/>
+        <property name="email" value="usuario1@gmail.com"/>
+        <property name="phone" value="666999666"/>
+        <property name="address" value="C/ Beatriz de Suabia 76."/>
+        <property name="photo"
+                  value="https://image.shutterstock.com/image-vector/cool-dude-monkey-glasses-headphones-260nw-574759426.jpg"/>
+        <property name="birthdate" value="1972/06/15"/>
+        <property name="genere" value="FEMALE"/>
+        <property name="userAccount" ref="userAccountUser1"/>
+        <property name="follows">
+            <list>
+            </list>
+        </property>
+        <property name="topics">
+            <list>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="user2" class="domain.User">
+        <property name="name" value="Nombre usuario 2"/>
+        <property name="surname" value="Apellidos usuario 2"/>
+        <property name="email" value="usuario2@gmail.com"/>
+        <property name="phone" value="618399522"/>
+        <property name="address" value="C/ Beatriz de Suabia 76."/>
+        <property name="photo"
+                  value="https://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/assets/v3/editorial/5/ca/5ca00daf-81a6-5e26-bff3-25ea003d8f4e/4f9054fbddfae.image.jpg"/>
+        <property name="birthdate" value="1992/09/01"/>
+        <property name="genere" value="UNDEFINED"/>
+        <property name="userAccount" ref="userAccountUser2"/>
+        <property name="follows">
+            <list>
+            </list>
+        </property>
+        <property name="topics">
+            <list>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="user3" class="domain.User">
+        <property name="name" value="Javi"/>
+        <property name="surname" value="Chiquichancla"/>
+        <property name="email" value="chiquichancla@ecotono.org"/>
+        <property name="phone" value="618399522"/>
+        <property name="address" value="C/ Beatriz de Suabia 76."/>
+        <property name="photo" value="https://png.icons8.com/android/1600/user.png"/>
+        <property name="birthdate" value="1985/03/21"/>
+        <property name="genere" value="MALE"/>
+        <property name="userAccount" ref="userAccountUser3"/>
+        <property name="follows">
+            <list>
+            </list>
+        </property>
+        <property name="topics">
+            <list>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Showrooms -->
+
+    <bean id="showroom1" class="domain.Showroom">
+        <property name="name" value="TodoTrapo"/>
+        <property name="description" value="Miles de artículos a su disposición. Confianza absoluta"/>
+        <property name="logo"
+                  value="http://caritasespanola.org/economiasolidaria/wp-content/uploads/Logo-ATT-300x132.jpg"/>
+        <property name="user" ref="user1"/>
+    </bean>
+    <bean id="showroom2" class="domain.Showroom">
+        <property name="name" value="SimBarBa"/>
+        <property name="description" value="Artículos de peluqueria y cosmetica"/>
+        <property name="logo" value="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png"/>
+        <property name="user" ref="user1"/>
+    </bean>
+    <bean id="showroom3" class="domain.Showroom">
+        <property name="name" value="TARA"/>
+        <property name="description"
+                  value="Ropa de primeras marcas a un percio increible con alguna pequeña inperfeccion o tara."/>
+        <property name="logo" value="https://www.comparasoftware.com/wp-content/uploads/2018/08/logoTARA.ai_.png"/>
+        <property name="user" ref="user2"/>
+    </bean>
+
+    <!-- Items -->
+
+    <bean id="item1" class="domain.Item">
+        <property name="title" value="Gorra Militar"/>
+        <property name="description" value="Resistente y duradera."/>
+        <property name="available" value="true"/>
+        <property name="price" value="99.99"/>
+        <property name="SKU" value="720615-XXXX99"/>
+        <property name="showroom" ref="showroom1"/>
+    </bean>
+    <bean id="item2" class="domain.Item">
+        <property name="title" value="Sandalias"/>
+        <property name="description" value="Del pescador"/>
+        <property name="available" value="true"/>
+        <property name="price" value="199.99"/>
+        <property name="SKU" value="720615-XXXX00"/>
+        <property name="showroom" ref="showroom1"/>
+    </bean>
+
+    <bean id="item3" class="domain.Item">
+        <property name="title" value="Vaqueros Lee"/>
+        <property name="description" value="Pantalón vaquero como los que ya no se hacen"/>
+        <property name="available" value="true"/>
+        <property name="price" value="19.99"/>
+        <property name="SKU" value="720615-XXXX01"/>
+        <property name="showroom" ref="showroom3"/>
+    </bean>
+    <bean id="item4" class="domain.Item">
+        <property name="title" value="RainJacket"/>
+        <property name="description" value="Chaqueta deportiva preparada para la lluvia"/>
+        <property name="available" value="true"/>
+        <property name="price" value="14.99"/>
+        <property name="SKU" value="720615-XXXX09"/>
+        <property name="showroom" ref="showroom1"/>
+
+    </bean>
+    <bean id="item5" class="domain.Item">
+        <property name="title" value="Secador Sahara"/>
+        <property name="description" value="Secador de pelo de 15000W de potencias. Podrias cocinar un cordero..."/>
+        <property name="available" value="true"/>
+        <property name="price" value="99.99"/>
+        <property name="SKU" value="720615-YYYY99"/>
+        <property name="showroom" ref="showroom2"/>
+
+    </bean>
+    <bean id="item6" class="domain.Item">
+        <property name="title" value="Botas Panama Jack"/>
+        <property name="description"
+                  value="Todos conocemos la calidad del calzado 'Panama Jack'. Son dos pies izquierdos del 44."/>
+        <property name="available" value="true"/>
+        <property name="price" value="99.99"/>
+        <property name="SKU" value="720615-YYYY99"/>
+        <property name="showroom" ref="showroom3"/>
+    </bean>
+</beans>

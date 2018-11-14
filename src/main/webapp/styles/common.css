@@ -1,0 +1,28 @@
+/* common.css
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ * 
+ */
+
+.error {
+	color: red;
+	font-weight: bolder;;
+	margin-top: 0px !important;
+	padding: 0px 0px 4px 4px !important;
+}
+
+.errorCC{
+	color: red;
+	font-weight: bolder;
+	margin-top: 0px !important;
+	padding: 0px 0px 4px 4px !important;
+ }
+
+.message {
+	color: red;
+	font-weight: bolder;
+}

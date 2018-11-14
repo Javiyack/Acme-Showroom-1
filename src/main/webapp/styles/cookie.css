@@ -1,0 +1,68 @@
+/*
+ * cookies.css 
+ */
+#overbox3 {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 999999;
+    display: block;
+}
+#infobox3 {
+    margin: auto;
+    position: relative;
+    top: 0px;
+    height: 58px;
+    width: 100%;
+    text-align:center;
+    background-color: #eeeeee;
+}
+#infobox3 p {
+    line-height:58px;
+    font-size:12px;
+    text-align:center;
+}
+#infobox3 p a {
+    margin-right:5px;
+    text-decoration: underline;
+}
+
+#barraaceptacion {
+    display:none;
+    position:fixed;
+    left:0px;
+    right:0px;
+    top:0px;
+    padding-bottom:20px;
+    width:100%;
+    text-align:left;
+    min-height:100%;
+    background-color: rgba(100, 100, 150, .7);
+    color:#fff;
+    z-index:99999;
+
+}
+ 
+.inner {
+    position:absolute;
+    margin-left: 300px;
+    margin-right: 100px;
+    padding-left:5px;
+    padding-right:100px;
+    font-family:verdana;
+    font-size:16px;
+    bottom:20%;
+}
+ 
+.inner a.ok {
+    padding:4px;
+    color:#00ffff;
+    text-decoration:none;
+}
+ 
+.inner a.info {
+    padding-left:5px;
+    text-decoration:none;
+    color:#cddc39;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="actor/create" extends="master.page">	
+		<put-attribute name="title" value="Register to the system" />
+		<put-attribute name="body" value="/views/actor/edit.jsp" />
+	</definition>
+	
+	<definition name="actor/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit personal data" />
+		<put-attribute name="body" value="/views/actor/edit.jsp" />
+	</definition>
+	
+		
+	<definition name="actor/display" extends="master.page">	
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/views/actor/edit.jsp" />
+	</definition>
+	
+	<definition name="actor/list" extends="master.page">	
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/views/actor/list.jsp" />
+	</definition>
+	
+	
+	
+	
+</tiles-definitions>

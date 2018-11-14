@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * security.xml * * Copyright (C) 2017 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:security="http://www.springframework.org/schema/security"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- Security infrastructure -->
+
+	<bean id="loginService" class="security.LoginService" />
+
+	<bean id="passwordEncoder"
+		  class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+
+	<!-- Access control -->
+
+	<security:http auto-config="true" use-expressions="true">
+
+		<!-- Permit All -->
+
+		<security:intercept-url pattern="/"
+								access="permitAll" />
+		<security:intercept-url pattern="/asynchronous/**"
+								access="permitAll" />
+		<security:intercept-url pattern="/favicon.ico"
+								access="permitAll" />
+		<security:intercept-url pattern="/images/**"
+								access="permitAll" />
+		<security:intercept-url pattern="/scripts/**"
+								access="permitAll" />
+		<security:intercept-url pattern="/styles/**"
+								access="permitAll" />
+		<security:intercept-url
+				pattern="/views/misc/index.jsp" access="permitAll" />
+		<security:intercept-url
+				pattern="/security/loginFailure.do" access="permitAll" />
+		<security:intercept-url
+				pattern="/welcome/index.do" access="permitAll" />
+		<security:intercept-url pattern="/term/**"
+								access="permitAll()" />
+		<security:intercept-url pattern="/showroom/list.do"
+								access="permitAll()" />
+		<security:intercept-url pattern="/showroom/display.do"
+								access="permitAll()" />
+		<security:intercept-url pattern="/item/list.do"
+								access="permitAll()" />
+		<security:intercept-url pattern="/item/display.do"
+								access="permitAll()" />
+		<security:intercept-url pattern="/user/display.do"
+								access="permitAll()" />
+		<security:intercept-url pattern="/actor/display.do"
+								access="permitAll()" />
+
+
+		<!-- isAuthenticated -->
+		<security:intercept-url pattern="/actor/actor/**"
+								access="isAuthenticated()" />
+		<security:intercept-url pattern="/actor/actor/**/**"
+								access="isAuthenticated()" />
+		<security:intercept-url pattern="/chirp/actor/**"
+								access="isAuthenticated()" />
+		<security:intercept-url pattern="/comment/actor/**"
+								access="isAuthenticated()" />
+		<security:intercept-url pattern="/subscription/**"
+								access="isAuthenticated()" />
+
+
+		<!-- User -->
+		<security:intercept-url pattern="/user/list.do"
+								access="hasRole('USER')" />
+		<security:intercept-url pattern="/showroom/user/**"
+								access="hasRole('USER')" />
+		<security:intercept-url pattern="/item/user/**"
+								access="hasRole('USER')" />
+		<security:intercept-url pattern="/request/user/**"
+								access="hasRole('USER')"/>
+		<security:intercept-url pattern="/request/user/**/**"
+								access="hasRole('USER')"/>
+
+		<!-- Agent -->
+		<security:intercept-url pattern="/agent/list.do"
+								access="hasRole('AGENT')" />
+		<!-- Admin -->
+		<security:intercept-url
+				pattern="/configuration/administrator/**"
+				access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url
+				pattern="/dashboard/administrator/**"
+				access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url
+				pattern="/tabooWord/administrator/**"
+				access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url
+				pattern="/admin/**"
+				access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url
+				pattern="/admin/administrator/**"
+				access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url
+				pattern="/agent/administrator/**"
+				access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url
+				pattern="/welcome/comingsoon/**"
+				access="hasRole('ADMINISTRATOR')" />
+
+		<!-- HTTPS -->
+
+		<security:intercept-url pattern="/security/login.do"
+								access="permitAll" />
+		<security:intercept-url pattern="/request/user/create.do"
+								access="hasRole('USER')" />
+		<security:intercept-url pattern="/request/user/edit.do"
+								access="hasRole('USER')" />
+		<security:intercept-url pattern="/user/create.do"
+								access="permitAll()"/>
+		<security:intercept-url pattern="/user/edit.do"
+								access="hasRole('USER')" />
+		<security:intercept-url pattern="/agent/create.do"
+								access="permitAll()" />
+		<security:intercept-url pattern="/agent/edit.do"
+								access="hasRole('AGENT')" />
+		<security:intercept-url pattern="/admin/administrator/crate.do"
+								access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url pattern="/auditor/administrator/create.do"
+								access="hasRole('ADMINISTRATOR')" />
+								
+		<!-- GLOBAL -->
+		<!-- Login Logout -->
+
+		<security:form-login
+				login-page="/security/login.do" password-parameter="password"
+				username-parameter="username"
+				authentication-failure-url="/security/loginFailure.do" />
+
+		<security:logout logout-success-url="/"
+						 invalidate-session="true" />
+
+	</security:http>
+</beans>
