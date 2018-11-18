@@ -2,6 +2,7 @@
 *.war
 *.class
 *.class
+*Entities.map
 target/*
 target/*/*
 .idea/*
