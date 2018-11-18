@@ -1273,6 +1273,30 @@ to {
 .w3-padding {
 	padding: 8px 16px !important
 }
+.w3-padding-top {
+	padding-left: 10px !important
+}
+
+.w3-padding-right {
+	padding-right: 10px !important
+}
+
+.w3-padding-bottom {
+	padding-left: 10px !important
+}
+
+.w3-padding-right {
+	padding-right: 10px !important
+}
+
+.w3-padding-vertical {
+	padding-top: 12px !important;
+	padding-bottom: 12px !important;
+}
+.w3-padding-horizontal {
+	padding-left: 12px !important;
+	padding-right: 12px !important;
+}
 
 .w3-padding-large {
 	padding: 12px 24px !important
@@ -1280,7 +1304,7 @@ to {
 
 .w3-padding-16 {
 	padding-top: 16px !important;
-	padding-bottom: 16px !important
+	padding-bottom: 16px !important;
 }
 
 .w3-padding-24 {
@@ -1313,7 +1337,7 @@ to {
 
 .w3-button:hover {
 	color: #000 !important;
-	background-color: #ccc !important
+	background-color: #b4aa50 !important
 }
 
 .w3-transparent, .w3-hover-none:hover {

@@ -42,30 +42,40 @@
         <form:hidden path="version"/>
         <form:hidden path="showroom"/>
         <div class="row">
-            <div class="col-100">
-                <a href="" class="iButton">Acme-Showroom/</a>
-                <a href="showroom/list.do" class="iButton"><spring:message code="label.showrooms"/>/</a>
-                <a href="showroom/display.do?showroomId=${item.showroom.id}" class="iButton">
+            <div class="col-100" style="padding-bottom: 0px!important;">
+                <a href="" class="iButton" style="padding-bottom: 0px!important;">Acme-Showroom/</a>
+                <a href="showroom/list.do" class="iButton" style="padding-bottom: 0px!important;"><spring:message
+                        code="label.showrooms"/>/</a>
+                <a href="showroom/display.do?showroomId=${item.showroom.id}" class="iButton zoom"
+                   style="padding-bottom: 0px!important;">
                     <jstl:out value="${item.showroom.name}/"/></a>
+                <hr style="margin-top: 0.2em;">
             </div>
         </div>
-        <hr>
-        <div class="row">
+        <div class="row w3-padding-top">
             <div class="col-100">
                 <legend style="box-sizing: border-box">
-                    <spring:message code="label.item"/>: <jstl:out value="${item.title}"/>
-                    <jstl:if test="${item.id!=0}">
-                        <spring:message var="msgSaveFirst" code="msg.save.first"/>
-                        <jstl:set var="url" value="/comment/actor/create.do?objectId=${item.id}"/>
-                        <spring:message code="label.new" var="newTitle"/>
-                        <spring:message code="label.comment" var="itemTitle"/>
-                        <a><i class="fa fa-commenting-o font-awesome w3-xxlarge toRight w3-padding-small iOverSize"
-                               onclick="showConditionalAlert('${msgSaveFirst}','${item.id}','${url}');"
-                               title="${newTitle} ${itemTitle}"></i></a>
-                        <a href="comment/actor/list.do?objectId=${item.id}">
-                            <i class="fa fa-comments-o font-awesome w3-xxlarge toRight  w3-padding-small w3-margin-right iOverSize"></i></a>
 
-                </jstl:if>
+                    <div class="row">
+                        <div class="col-50">
+                            <spring:message code="label.item"/>: <jstl:out value="${item.title}"/>
+                        </div>
+                        <jstl:if test="${item.id!=0}">
+                            <spring:message var="msgSaveFirst" code="msg.save.first"/>
+                            <jstl:set var="url" value="/comment/actor/create.do?objectId=${item.id}"/>
+                            <spring:message code="label.new" var="newTitle"/>
+                            <spring:message code="label.comment" var="newCommentTitle"/>
+                            <spring:message code="label.comments" var="comentsTitle"/>
+                            <div class="col-40 toRight">
+                                <a><i class="fa fa-commenting-o font-awesome w3-xxlarge w3-padding zoom iButton toRight"
+                                      onclick="showConditionalAlert('${msgSaveFirst}','${item.id}','${url}');"
+                                      title="${newTitle} ${newCommentTitle}"></i></a>
+                                <a href="comment/actor/list.do?objectId=${showroom.id}">
+                                    <i class="fa fa-comments-o font-awesome w3-xxlarge w3-padding zoom iButton toRight"
+                                       title="${comentsTitle}"></i></a>
+                                </div>
+                        </jstl:if>
+                    </div>
                 </legend>
             </div>
         </div>

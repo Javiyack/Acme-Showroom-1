@@ -310,14 +310,24 @@ select {
 
 .iOverSize {
 	box-sizing: border-box;
+	transition: transform .2s; /* Animation */
 	z-index: 10 !important;
 }
 .iOverSize:hover{
-	z-index: 10 !important;
 	-ms-transform: scale(1.5); /* IE 9 */
 	-webkit-transform: scale(1.5); /* Safari 3-8 */
 	transform: scale(1.5);
-	box-sizing: border-box;
+}
+
+.zoom {
+	transition: transform .2s;
+	margin: 0 auto;
+}
+
+.zoom:hover {
+	-ms-transform: scale(1.5); /* IE 9 */
+	-webkit-transform: scale(1.5); /* Safari 3-8 */
+	transform: scale(1.5);
 }
 
 .formButton1 {
