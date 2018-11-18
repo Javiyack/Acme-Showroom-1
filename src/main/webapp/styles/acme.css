@@ -290,14 +290,34 @@ select {
 	padding: 0px;
 }
 
-.iButton{
+
+.iRow{
+	margin: 0px;
+	padding: 0px;
 	cursor: pointer;
+
 }
 
 .iButton{
 	margin: 0px;
 	padding: 0px;
 	cursor: pointer;
+
+}
+.iButton:hover{
+	color:darkorange;
+}
+
+.iOverSize {
+	box-sizing: border-box;
+	z-index: 10 !important;
+}
+.iOverSize:hover{
+	z-index: 10 !important;
+	-ms-transform: scale(1.5); /* IE 9 */
+	-webkit-transform: scale(1.5); /* Safari 3-8 */
+	transform: scale(1.5);
+	box-sizing: border-box;
 }
 
 .formButton1 {
@@ -324,14 +344,21 @@ select {
 	max-width: 80%;
 }
 
+.tableRatting {
+	text-align: center;
+	min-height: 1.25em !important;;
+	max-height: 1.25em !important;;
+	box-sizing: border-box;
+	margin: auto;
+}
 .tableImg {
 	text-align: center;
-	min-height: 5em;
-	max-height: 5em;
+	min-height: 5em !important;;
+	max-height: 5em !important;;
 	border-radius: 1px;
 	background-color: rgba(255, 255, 255, 0.2);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
+	rgba(0, 0, 0, 0.19);
 	box-sizing: border-box;
 	border: 3px solid white!important;
 	margin: auto;
@@ -504,8 +531,17 @@ h5 {
 	float: right;
 }
 
-.css-uncheck{
+.css-checked{
+	color: darkorange!important;
+}
+.css-checked:hover{
 	color: rgba(200, 200, 200, 0.6)!important;
+}
+.css-unchecked{
+	color: rgba(200, 200, 200, 0.6)!important;
+}
+.css-unchecked:hover{
+	color: darkorange!important;
 }
 .disabled {
 	color: #fff !important;

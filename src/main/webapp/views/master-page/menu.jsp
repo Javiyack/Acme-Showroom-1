@@ -111,14 +111,14 @@
             <a id="chirps" class="w3-bar-item w3-button w3-padding w3-xlarge" onclick="myAccordionFunc('chirpsAcc')" name="menuItem">
                 <i class="fa fa-bell-o fa-fw w3-margin-right"></i> <spring:message code="label.chirps"/>
             </a>
-            <div id="chirpsAcc" class="w3-hide w3-card sombra">
+            <div id="chirpsAcc" class="w3-hide w3-card sombra" name="accordion">
                 <a href="chirp/actor/list.do"
-                   class="w3-bar-item w3-button w3-padding w3-large w3-blue w3-text-white"
+                   class="w3-bar-item w3-button w3-padding w3-large w3-light-gray"
                    style="padding-left: 2em !important;"> <i
                         class="fa fa-edit fa-fw w3-margin-right"></i> <spring:message code="label.my.chirps"/>
                 </a>
                 <a href="chirp/actor/stream.do"
-                   class="w3-bar-item w3-button w3-padding w3-large w3-blue w3-text-white"
+                   class="w3-bar-item w3-button w3-padding w3-large w3-light-gray"
                    style="padding-left: 2em !important;"> <i
                         class="fa fa-eye fa-fw w3-margin-right"></i> <spring:message code="label.my.subscribed.chirps"/>
                 </a>
@@ -129,14 +129,14 @@
             <a id="requests" class="w3-bar-item w3-button w3-padding w3-xlarge" onclick="myAccordionFunc('requestsAcc')" name="menuItem">
                 <i class="fa fa fa-bank fa-fw w3-margin-right"></i> <spring:message code="label.requests"/>
             </a>
-            <div id="requestsAcc" class="w3-hide w3-card sombra">
+            <div id="requestsAcc" class="w3-hide w3-card sombra" name="accordion">
                 <a href="request/user/created/list.do"
-                   class="w3-bar-item w3-button w3-padding w3-large w3-blue w3-text-white"
+                   class="w3-bar-item w3-button w3-padding w3-large w3-light-gray"
                    style="padding-left: 2em !important;"> <i
                         class="fa fa-shopping-cart fa-fw w3-margin-right"></i> <spring:message code="label.requests"/>
                 </a>
                 <a href="request/user/received/list.do"
-                   class="w3-bar-item w3-button w3-padding w3-large w3-blue w3-text-white"
+                   class="w3-bar-item w3-button w3-padding w3-large w3-light-gray"
                    style="padding-left: 2em !important;"> <i
                         class="fas fa-piggy-bank fa-fw w3-margin-right"></i> <spring:message code="label.sales"/>
                 </a>
@@ -264,72 +264,5 @@
             modal.style.display = "none";
         }
     };
-
-    function openAccordion(element) {
-        element.className += " w3-show";
-        element.previousElementSibling.className += " w3-text-orange";
-
-    }
-
-    function closeAccordion(element) {
-        element.className = element.className.replace(" w3-show", "");
-        element.previousElementSibling.className =
-            element.previousElementSibling.className.replace(" w3-orange", "");
-        element.previousElementSibling.className =
-            element.previousElementSibling.className.replace(" w3-text-orange", "");
-        markOpenLink();
-    }
-
-    function unselectAll() {
-        elementos = document.getElementsByName('menuItem');
-        elementos.forEach(unSelect);
-
-    }
-    function unSelect(item, index){
-        if(item.id.includes('Acc')){
-            closeAccordion(item);
-        }
-        item.className = item.className.replace(" w3-orange", "");
-    }
-    function select(item){
-        if(item.id.includes('Acc')){
-            openAccordion(item);
-            item.previousElementSibling.className += " w3-orange";
-            item.previousElementSibling.className += " w3-text-black";
-        }else{
-            item.className += " w3-orange";
-        }
-    }
-
-    function myAccordionFunc(elementId) {
-        var x = document.getElementById(elementId);
-        if (x.className.indexOf("w3-show") == -1) {
-           openAccordion(x);
-        } else {
-           closeAccordion(x);
-        }
-    }
-
-    function markOpenLink() {
-        unselectAll();
-        var pathname = '';
-        pathname += window.location.pathname;
-        if (pathname.includes('showroom')) {
-            select(document.getElementById('showrooms'));
-        } else if (pathname.includes('item')) {
-            select(document.getElementById('items'));
-        } else if (pathname.includes('chirp')) {
-            select(document.getElementById('chirpsAcc'));
-        } else if (pathname.includes('request')) {
-            select(document.getElementById('requestsAcc'));
-        } else if (pathname.includes('subscription')) {
-            select(document.getElementById('subscriptions'));
-        } else if (pathname.includes('actor/actor')) {
-            select(document.getElementById('actors'));
-        } else if (pathname.includes('dashboard')) {
-            select(document.getElementById('dashboard'));
-        }
-    }
-
 
 </script>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -50,7 +49,7 @@
 
                 <jstl:if test="${readonly}">
                     <label><spring:message code="label.stars"/> 
-                        <span class="fa fa-star-o w3-xlarge w3-text-gray" id="star1"></span>
+                        <span class="fa fa-star-o w3-xlarge w3-text-gray checked" id="star1"></span>
                         <span class="fa fa-star-o w3-xlarge w3-text-gray" id="star2"></span>
                         <span class="fa fa-star-o w3-xlarge w3-text-gray" id="star3"></span>
                     </label>

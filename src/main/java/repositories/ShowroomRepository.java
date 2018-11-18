@@ -11,13 +11,16 @@ import java.util.Collection;
 public interface ShowroomRepository extends JpaRepository<Showroom, Integer> {
 
 
-	@Query("select r from Showroom r where r.user.id=?1")
+	@Query("select s from Showroom s where s.user.id=?1")
 	Collection<Showroom> findByOwner(Integer ownerId);
 
 
-	@Query("select r from Showroom r where r.name like %?1% or r.description like %?1%")
+	@Query("select s from Showroom s where s.name like %?1% or s.description like %?1%")
 	Collection<Showroom> findByKeyWord(String keyWord);
 
-	@Query("select r from Showroom r where r.user.id=?1")
+	@Query("select s from Showroom s where s.user.id=?1")
 	Collection<Showroom> findByUserId(int id);
+
+	@Query("select s from Showroom s where (s.name like %?1% or s.description like %?1%) and s.user.id=?2")
+	Collection<Showroom> findByKeyWordAndUserId(String word, Integer userId);
 }

@@ -44,7 +44,7 @@
         <display:table pagesize="${pageSize}"
                        class="flat-table0 flat-table-1 w3-light-grey" name="subscribedActors"
                        requestURI="${requestUri}" id="row">
-            <jstl:set var="url" value="chirp/actor/list.do?subscriptionId=${row.id}"/>
+            <jstl:set var="url" value="chirp/actor/list.do?actorId=${row.id}"/>
             <acme:urlColumn value="${row.userAccount.username}" title="actor.username"
                             sortable="true" href="${url}" css="iButton" tooltip="Ver sus chirps"/>
             <acme:urlColumn value="${row.surname}, ${row.name}" title="label.name"
@@ -87,7 +87,7 @@
         <display:column title="${labelSubscription}" class="iButton" style="width: 8em;">
             <form action="subscription/actor/topic/unsubscribe.do" method="POST">
                 <input type="hidden" name="topic" value="${row2}">
-                <input type="submit" value="&#xf00c;" class="font-awesome flat w3-text-orange w3-xlarge">
+                <input type="submit" value="&#xf00c;" class="font-awesome flat w3-text-orange w3-xlarge iButton iOverSize">
             </form>
         </display:column>
 

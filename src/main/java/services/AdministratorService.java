@@ -291,8 +291,8 @@ public class AdministratorService {
     /*  Paso 1: calcular la media.
         Paso 2: calcular el cuadrado de la distancia a la media para cada dato.
         Paso 3: sumar los valores que resultaron del paso 2.
-        Paso 4: dividir entre el nï¿½mero de datos.
-        Paso 5: sacar la raï¿½z cuadrada.*/
+        Paso 4: dividir entre el número de datos.
+        Paso 5: sacar la raíz cuadrada.*/
         Double result = 0.;
         Double avg = this.avg(values);
         int N = values.size();

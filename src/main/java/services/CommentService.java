@@ -3,6 +3,7 @@ package services;
 import java.util.Collection;
 import java.util.Date;
 
+import domain.Commentable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +40,7 @@ public class CommentService {
     public Comment create() {
         final Comment result = new Comment();
         result.setMoment(new Date());
+        result.setRating(0);
         return result;
     }
 
@@ -57,6 +59,8 @@ public class CommentService {
 
     public Collection <Comment> findByCommentedObjectId(Integer objectId) {
         return commentRepository.findByCommentedObjectId(objectId);    }
+    public Commentable findCommentedObjectByCommentedObjectId(Integer objectId) {
+        return commentRepository.findCommentedObjectByCommentedObjectId(objectId);    }
 
     public Comment recontruct(Comment comment, BindingResult binding ) {
         Actor actor = actorService.findByPrincipal();

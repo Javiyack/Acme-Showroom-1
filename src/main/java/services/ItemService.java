@@ -53,7 +53,7 @@ public class ItemService {
         String uppercaseLetters = "ABCEFGHYJKLMNOPQRSTUVWXYZ";
         Random rnd = new Random();
         for (int i = 0; i < 4; i++) {
-            result += uppercaseLetters.charAt(rnd.nextInt(26));
+            result += uppercaseLetters.charAt(rnd.nextInt(25));
         }
         result += rnd.nextInt(10);
         result += rnd.nextInt(10);

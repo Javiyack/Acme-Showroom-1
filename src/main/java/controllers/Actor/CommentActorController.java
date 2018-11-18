@@ -1,8 +1,11 @@
 
 package controllers.Actor;
 
-import java.util.Collection;
-
+import controllers.AbstractController;
+import domain.Comment;
+import domain.Commentable;
+import domain.Item;
+import domain.Showroom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -11,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import controllers.AbstractController;
-import domain.Comment;
 import services.CommentService;
+
+import java.util.Collection;
 
 @Controller
 @RequestMapping("/comment/actor")
@@ -38,8 +40,10 @@ public class CommentActorController extends AbstractController {
         ModelAndView result;
         final Collection <Comment> comments;
         comments = this.commentService.findByCommentedObjectId(objectId);
+        Commentable commentedObject = this.commentService.findCommentedObjectByCommentedObjectId(objectId);
         result = new ModelAndView("comment/list");
         result.addObject("comments", comments);
+        result.addObject("commented", commentedObject.getObjectName());
         result.addObject("requestUri", "comment/actor/list.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
         return result;

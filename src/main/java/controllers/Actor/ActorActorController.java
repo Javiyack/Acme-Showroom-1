@@ -77,7 +77,7 @@ public class ActorActorController extends AbstractController {
         Boolean subscribedToActor =  this.actorService.checkIfSubscribedToActor(actor);
         result.addObject("subscribedToActor", subscribedToActor);
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
-        Collection <Chirp> chirps = chirpService.findByUserId(actorId);
+        Collection <Chirp> chirps = chirpService.findByActorId(actorId);
         result.addObject("chirps", chirps);
         if(authority.equals(Authority.USER)){
             Collection <Showroom> showrooms = showroomService.findByUserId(actorId);

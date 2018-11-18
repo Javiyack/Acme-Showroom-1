@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -46,41 +45,39 @@
                 <legend><spring:message code="label.chirp"/>
                 </legend>
                 <jstl:if test="${readonly}">
-                    <a href="actor/display.do?actorId=${chirp.actor.id}" class="fa fa-user font-awesome"> 
-                        <jstl:out value="${chirp.actor.userAccount.username}"/>
+                    <a href="actor/display.do?actorId=${chirp.actor.id}" class="fa fa-user font-awesome"> <jstl:out value="${chirp.actor.userAccount.username}"/>
                     </a>
                     <jstl:if test="${!subscribedToActor}">
                         <spring:message code="label.follow" var="actorTooltip"/>
-                        <a href="subscription/actor/subscribe.do?actorId=${chirp.actor.id}
-                        &redirectUrl=/chirp/actor/display.do?chirpId=${chirp.id}">
-                            <i class="fa fa-heart-o font-awesome w3-text-gray w3-margin-right" title="${actorTooltip}"></i>
-                        </a>
+                        <jstl:set var="corazon" value="fa-heart-o w3-text-gray"/>
                     </jstl:if>
                     <jstl:if test="${subscribedToActor}">
                         <spring:message code="label.unfollow" var="actorTooltip"/>
-                        <a href="subscription/actor/subscribe.do?actorId=${chirp.actor.id}
-                        &redirectUrl=/chirp/actor/display.do?chirpId=${chirp.id}">
-                            <i class="fa fa-heart font-awesome w3-text-red w3-margin-right" title="${actorTooltip}"></i>
-                        </a>
+                        <jstl:set var="corazon" value="fa-heart w3-text-red"/>
                     </jstl:if>
+                    <a href="subscription/actor/subscribe.do?actorId=${chirp.actor.id}
+                        &redirectUrl=/chirp/actor/display.do?chirpId=${chirp.id}">
+                        <i class="fa ${corazon} font-awesome w3-margin-right iOverSize w3-padding-small"
+                           title="${actorTooltip}"></i>
+                    </a>
                 </jstl:if>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <acme:textbox code="label.none" path="moment" form="mainForm"
-                              readonly="true" css="flat"/>
+                <acme:moment code="label.none" path="moment"
+                             readonly="true" css="flat"/>
                 <jstl:if test="${readonly}">
                     <acme:textbox code="label.title" path="title"
                                   readonly="${readonly}" form="mainForm"/>
                     <jstl:if test="${chirp.topic!=''}">
-                        <label class="fa fa-tag font-awesome"> <spring:message code="label.topic"/>
+                        <label class="fa fa-tag font-awesome"> <spring:message code="label.topic"/>
                             <jstl:if test="${!subscribedToTopic}">
                                 <spring:message code="label.follow" var="topicTooltip"/>
                                 <input form="topicSubs" type="hidden" name="topic" value="${chirp.topic}">
                                 <input form="topicSubs" type="hidden" name="redirectUrl"
                                        value="/chirp/actor/display.do?chirpId=${chirp.id}">
-                                <i class="fa fa-heart-o font-awesome w3-text-gray w3-margin-right"
+                                <i class="fa fa-heart-o font-awesome w3-text-gray w3-margin-right iOverSize w3-padding-small"
                                    onclick="document.getElementById('topicSubs').submit();" title="${topicTooltip}">
                                 </i>
                             </jstl:if>
@@ -89,7 +86,7 @@
                                 <input form="topicUnSubs" type="hidden" name="topic" value="${chirp.topic}">
                                 <input form="topicUnSubs" type="hidden" name="redirectUrl"
                                        value="/chirp/actor/display.do?chirpId=${chirp.id}">
-                                <i class="fa fa-heart font-awesome w3-text-red w3-margin-right"
+                                <i class="fa fa-heart font-awesome w3-text-red w3-margin-right iOverSize w3-padding-small"
                                    onclick="document.getElementById('topicUnSubs').submit();" title="${topicTooltip}">
                                 </i>
                             </jstl:if>

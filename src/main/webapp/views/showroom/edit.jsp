@@ -54,11 +54,11 @@
                             <jstl:set var="url" value="/comment/actor/create.do?objectId=${showroom.id}"/>
                             <spring:message code="label.new" var="newTitle"/>
                             <spring:message code="label.comment" var="itemTitle"/>
-                            <a><i class="fa fa-commenting-o font-awesome w3-xxlarge toRight"
+                            <a><i class="fa fa-commenting-o font-awesome w3-xxlarge toRight w3-padding-small iOverSize"
                                   onclick="showConditionalAlert('${msgSaveFirst}','${showroom.id}','${url}');"
                                   title="${newTitle} ${itemTitle}"></i></a>
                             <a href="comment/actor/list.do?objectId=${showroom.id}">
-                                <i class="fa fa-comments-o font-awesome w3-xxlarge toRight w3-margin-right"></i></a>
+                                <i class="fa fa-comments-o font-awesome w3-xxlarge toRight w3-margin-right iOverSize"></i></a>
                         </jstl:if>
                     </legend>
                     <div class="row">

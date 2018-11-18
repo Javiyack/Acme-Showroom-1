@@ -29,17 +29,14 @@
 		onclick="w3_open();">
 		<i class="fa fa-bars"></i>  Menu
 	</button>
-	<a style="margin-left: 1em; margin-right: 1em;"
-		href="${requestScope['javax.servlet.forward.request_uri']}<my:replaceParam name='language' value='en' />">en</a>
-	<a style="margin-left: 1em; margin-right: 1em;"
-		href="${requestScope['javax.servlet.forward.request_uri']}<my:replaceParam name='language' value='es' />">es</a>
-	<span class="w3-bar-item w3-right">
-		<a href="?language=es"><img src="images/spain.ico"
-			class="iconoenlace" style="margin-bottom: 22px;"
-			title="Cambiar a español" /></a> <a href="?language=en"><img
-			src="images/uk.ico" class="iconoenlace" style="margin-bottom: 22px;"
-			title="Change to english" /></a> <security:authorize
-			access="isAnonymous()">
+	<i class="w3-bar-item w3-button"><img src="images/spain.ico"
+		class="iconoenlace" style="margin-bottom: 22px;"
+		title="Cambiar a español" onclick="changeLang('es');" /></i> <i
+		class="w3-bar-item w3-button"><img src="images/uk.ico" class="iconoenlace"
+		style="margin-bottom: 22px;" title="Change to english"
+		onclick="changeLang('en')" /></i> <span class="w3-bar-item w3-right">
+
+		<security:authorize access="isAnonymous()">
 			<a href="user/create.do"><i class="fa fa-user-plus w3-xxlarge"
 				style="margin-left: 1em; margin-right: 1em;"></i></a>
 		</security:authorize> <a href="${url}" style="color:${color};"> <i

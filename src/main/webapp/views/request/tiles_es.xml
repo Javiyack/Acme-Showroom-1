@@ -11,11 +11,11 @@
 
 <tiles-definitions>
 	<definition name="request/user/create" extends="master.page">
-		<put-attribute name="title" value="Crear solicitud" />
+		<put-attribute name="title" value="" />
 		<put-attribute name="body" value="/views/request/edit.jsp" />
 	</definition>
 	<definition name="request/user/edit" extends="master.page">
-		<put-attribute name="title" value="Editar solicitud" />
+		<put-attribute name="title" value="" />
 		<put-attribute name="body" value="/views/request/edit.jsp" />
 	</definition>
 	<definition name="request/user/list" extends="master.page">

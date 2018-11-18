@@ -14,6 +14,92 @@ $(document).ready(function () {
 
 });
 
+function changeLang(lang) {
+    var pathname = '';
+    pathname += window.location.href;
+    if (pathname.includes('?')) {
+        if (pathname.includes('language')) {
+            pathname = pathname.replace('language=es', "language=" + lang);
+            pathname = pathname.replace('language=en', "language=" + lang);
+        } else {
+            pathname += "&language=" + lang;
+        }
+    } else {
+        pathname += "?language=" + lang;
+    }
+    window.location.replace(pathname);
+}
+
+
+function openAccordion(element) {
+    element.className += " w3-show";
+    element.previousElementSibling.className += " w3-flat-silver";
+
+}
+
+function closeAccordion(element) {
+    element.className = element.className.replace(" w3-show", "");
+    element.previousElementSibling.className =
+        element.previousElementSibling.className.replace(" w3-orange", "");
+    element.previousElementSibling.className =
+        element.previousElementSibling.className.replace(" w3-flat-silver", "");
+    markOpenLink();
+}
+
+function unselectAll() {
+    elementos = document.getElementsByName('menuItem');
+    elementos.forEach(unSelect);
+
+}
+
+function unSelect(item, index) {
+    if (item.id.includes('Acc')) {
+        closeAccordion(item);
+    }
+    item.className = item.className.replace(" w3-orange", "");
+}
+
+function select(item) {
+    if (item.id.includes('Acc')) {
+        openAccordion(item);
+        item.previousElementSibling.className += " w3-orange";
+        item.previousElementSibling.className += " w3-text-black";
+    } else {
+        item.className += " w3-orange";
+    }
+}
+
+function myAccordionFunc(elementId) {
+    var x = document.getElementById(elementId);
+    if (x.className.indexOf("w3-show") == -1) {
+        openAccordion(x);
+    } else {
+        closeAccordion(x);
+    }
+}
+
+function markOpenLink() {
+    unselectAll();
+    var pathname = '';
+    pathname += window.location.pathname;
+    if (pathname.includes('showroom')) {
+        select(document.getElementById('showrooms'));
+    } else if (pathname.includes('item')) {
+        select(document.getElementById('items'));
+    } else if (pathname.includes('chirp')) {
+        select(document.getElementById('chirpsAcc'));
+    } else if (pathname.includes('request')) {
+        select(document.getElementById('requestsAcc'));
+    } else if (pathname.includes('subscription')) {
+        select(document.getElementById('subscriptions'));
+    } else if (pathname.includes('actor/actor')) {
+        select(document.getElementById('actors'));
+    } else if (pathname.includes('dashboard')) {
+        select(document.getElementById('dashboard'));
+    }
+}
+
+
 function setRating(element, rating, max) {
     document.getElementById("rating").value = rating;
     var id = "star";

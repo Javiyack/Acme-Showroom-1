@@ -100,4 +100,8 @@ public class ShowroomService {
         itemRepository.deleteInBatch(items);
         showroomRepository.delete(showroomId);
     }
+
+    public Collection<Showroom> findByKeyWordAndUserId(String word, Integer userId) {
+            return showroomRepository.findByKeyWordAndUserId(word, userId);
+    }
 }

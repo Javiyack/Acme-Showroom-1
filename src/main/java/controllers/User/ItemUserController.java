@@ -57,6 +57,9 @@ public class ItemUserController extends AbstractController {
                 items = this.itemService.findByShowroomId(showroomId);
             }else{
                 items = this.itemService.findByLogedActor();
+                result.addObject("userList", true);
+                result.addObject("username", actorService.findByPrincipal().getUserAccount().getUsername());
+                result.addObject("userId", actorService.findByPrincipal().getId());
             }
         } catch (Throwable oops) {
             if (oops.getMessage().startsWith("msg.")) {
@@ -66,7 +69,6 @@ public class ItemUserController extends AbstractController {
             }
         }
         result.addObject("items", items);
-        result.addObject("userList", true);
         result.addObject("word", word);
         result.addObject("requestUri", "item/user/list.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
@@ -83,8 +85,11 @@ public class ItemUserController extends AbstractController {
             result.addObject("showroomId", req.getParameter("showroomId"));
             result.addObject("showroomName", req.getParameter("showroomName"));
         }
-        else
+        else {
             items = this.itemService.findByKeyWordAndLogedActor(req.getParameter("word").trim());
+            result.addObject("username", actorService.findByPrincipal().getUserAccount().getUsername());
+            result.addObject("userId", actorService.findByPrincipal().getId());
+        }
         result.addObject("items", items);
         result.addObject("requestUri", "item/list.do");
         result.addObject("word", req.getParameter("word"));

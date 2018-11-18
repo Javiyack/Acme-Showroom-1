@@ -2,13 +2,11 @@
  * list.jsp
  *
  * Copyright (C) 2017 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
+ *
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
  * http://www.tdg-seville.info/License.html
  --%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
@@ -65,11 +63,11 @@
                       value="${rol=='user' and (logedActor eq row.user.userAccount or  logedActor eq row.item.showroom.user.userAccount)}"/>
 
             <jstl:if test="${logedActor eq row.item.showroom.user.userAccount}">
-                <acme:urlColumn value="" title="label.none" href="equest/user/edit.do?requestId=${row.id}" css="iButton"
+                <acme:urlColumn value="" title="label.none" href="request/user/edit.do?requestId=${row.id}" css="iButton"
                                 icon="fa fa-edit w3-xlarge" />
             </jstl:if>
             <jstl:if test="${logedActor eq row.user.userAccount}">
-                <acme:urlColumn value="" title="label.none" href="equest/user/edit.do?requestId=${row.id}" css="iButton"
+                <acme:urlColumn value="" title="label.none" href="request/user/edit.do?requestId=${row.id}" css="iButton"
                                 icon="fa fa-eye w3-xlarge" />
             </jstl:if>
         </display:table>

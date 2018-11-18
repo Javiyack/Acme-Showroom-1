@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {@Index(columnList = "SKU, title, description")})
-public class Item extends DomainEntity {
+public class Item extends Commentable {
     /*store an auto-generated SKU, a
     title, a description, a price, and whether it?s available or not.*/
     private String SKU;
@@ -74,8 +74,9 @@ public class Item extends DomainEntity {
         return this.title;
     }
 
-    public void setTitle(final String name) {
-        this.title = name;
+    public void setTitle(final String title) {
+        super.setObjectName(title);
+        this.title = title;
     }
 
 

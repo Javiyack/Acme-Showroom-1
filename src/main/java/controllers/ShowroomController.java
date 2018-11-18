@@ -1,10 +1,9 @@
 
 package controllers;
 
-import java.util.Collection;
-
-import javax.servlet.http.HttpServletRequest;
-
+import domain.Comment;
+import domain.Item;
+import domain.Showroom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -12,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import domain.Comment;
-import domain.Item;
-import domain.Showroom;
 import services.CommentService;
 import services.ItemService;
 import services.ShowroomService;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 
 @Controller
 @RequestMapping("/showroom")
@@ -41,29 +39,34 @@ public class ShowroomController extends AbstractController {
 
     // List ------------------------------------------------------------------
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(final Integer pageSize, String word) {
+    public ModelAndView list(final Integer pageSize, Integer userId, String username, String word) {
         ModelAndView result;
-        final Collection<Showroom> showrooms;
-        showrooms = this.showroomService.findByKeyWord((word!=null)?word:"");
         result = new ModelAndView("showroom/list");
+        final Collection <Showroom> showrooms;
+        if (userId != null && userId>0) {
+            showrooms = this.showroomService.findByKeyWordAndUserId((word != null) ? word : "", userId);
+            result.addObject("username", username);
+            result.addObject("userId", userId);
+        } else {
+            showrooms = this.showroomService.findByKeyWord((word != null) ? word : "");
+
+        }
         result.addObject("showrooms", showrooms);
         result.addObject("requestUri", "showroom/list.do");
         result.addObject("word", word);
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
         return result;
     }
+
     // List ------------------------------------------------------------------
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public ModelAndView list(HttpServletRequest req) {
-        ModelAndView result;
-        final Collection<Showroom> showrooms;
-        showrooms = this.showroomService.findByKeyWord(req.getParameter("word").trim());
-        result = new ModelAndView("showroom/list");
-        result.addObject("showrooms", showrooms);
-        result.addObject("requestUri", "showroom/list.do");
-        result.addObject("word", req.getParameter("word"));
-        result.addObject("pageSize", (req.getParameter("pageSize") != null) ? req.getParameter("pageSize") : 5);
-        return result;
+        String word = req.getParameter("word").trim();
+        Integer pageSize = Integer.parseInt((req.getParameter("pageSize") != null) ? req.getParameter("pageSize") : "5");
+        Integer userId = Integer.parseInt((req.getParameter("userId") != null
+                && req.getParameter("userId").length()>0) ? req.getParameter("userId") : "-1");
+        String username = req.getParameter("username").trim();
+        return list(pageSize, userId, username, word);
     }
 
     // Display user -----------------------------------------------------------
@@ -94,8 +97,8 @@ public class ShowroomController extends AbstractController {
 
     protected ModelAndView createDisplaytModelAndView(final Showroom model, final String message) {
         final ModelAndView result;
-        Collection<Item> items =  itemService.findByShowroom(model);
-        Collection<Comment> comments = this.commentService.findByCommentedObjectId(model.getId());
+        Collection <Item> items = itemService.findByShowroom(model);
+        Collection <Comment> comments = this.commentService.findByCommentedObjectId(model.getId());
         result = new ModelAndView("showroom/display");
         result.addObject("showroom", model);
         result.addObject("items", items);

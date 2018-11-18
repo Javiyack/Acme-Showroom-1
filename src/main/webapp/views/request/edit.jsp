@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -48,7 +47,7 @@
                               readonly="true"/>
             </div>
             <div class="col-25">
-                <acme:textbox code="label.moment" path="moment"
+                <acme:moment code="label.moment" path="moment"
                               readonly="true" css="flat"/>
             </div>
         </div>

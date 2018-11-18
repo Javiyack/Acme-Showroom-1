@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {@Index(columnList = "name, description")})
-public class Showroom extends DomainEntity {
+public class Showroom extends Commentable {
 
 
     private String name;
@@ -41,6 +41,7 @@ public class Showroom extends DomainEntity {
     }
 
     public void setName(final String name) {
+        super.setObjectName(name);
         this.name = name;
     }
 

@@ -8,8 +8,8 @@
  * http://www.tdg-seville.info/License.html
  --%>
 
-<%@page language="java" contentType="text/html; charset=ISO-8859-15"
-        pageEncoding="ISO-8859-15" %>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+        pageEncoding="ISO-8859-1" %>
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -25,7 +25,7 @@
 <base
         href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="shortcut icon" href="favicon.ico"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -67,7 +67,7 @@
 
 <title><tiles:insertAttribute name="title" ignore="true"/></title>
 
-<body ondragover="return false;" class="w3-flat-wet-asphalt" onload="">
+<body ondragover="return false;" class="w3-flat-wet-asphalt">
 <tiles:insertAttribute name="header"/>
 <tiles:insertAttribute name="menu"/>
 

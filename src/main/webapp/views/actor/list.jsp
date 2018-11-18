@@ -7,8 +7,7 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
+
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
@@ -60,7 +59,7 @@
                                     title="label.authority" sortable="true" css="iButton"/>
                 </jstl:if>
                 <jstl:if test="${!userIsFollowedMap[row]}">
-                    <jstl:set var="icon" value="fa fa-check w3-xlarge w3-text-gray css-uncheck"/>
+                    <jstl:set var="icon" value="fa fa-check w3-xlarge w3-text-gray css-unchecked"/>
                 </jstl:if>
                 <jstl:if test="${userIsFollowedMap[row]}">
                     <jstl:set var="icon" value="fa fa-check w3-xlarge w3-text-orange"/>

@@ -23,27 +23,38 @@
 
 <%-- Attributes --%>
 
-<%@ attribute name="value" required="true" %>
 <%@ attribute name="title" required="true" %>
-<%@ attribute name="href" required="true" %>
+<%@ attribute name="src" required="true" %>
 
-<%@ attribute name="sortable" required="false" %>
 <%@ attribute name="css" required="false" %>
 <%@ attribute name="style" required="false" %>
-<%@ attribute name="icon" required="false" %>
+<%@ attribute name="href" required="false" %>
 <%@ attribute name="tooltip" required="false" %>
 
+
+<jstl:if test="${css==null}">
+    <jstl:set var="css" value="tableImg"/>
+</jstl:if>
 <%-- Definition --%>
 
 <spring:message code="${title}" var="intercionalizedTitle"/>
 
 
 <display:column title="${intercionalizedTitle}"
-                sortable="${sortable}" class="${css}" style="${style}">
-        <div style="height: 100%;margin: 0px;padding: 0.7em 1em 0.7em 0.5em;${style}"
+                sortable="false" style="${style}">
+
+    <jstl:if test="${href!=null}">
+        <div style="margin: 0px;padding: 0.7em 1em 0.7em 0.5em;${style}"
              onclick="relativeRedir('${href}');" title="${tooltip}">
-            <i class="${icon}" style="text-align:center;"> <jstl:out value="${value}"/></i>
+            <img src="${src}" style="text-align:center;" class="${css}"/> </img>
         </div>
+    </jstl:if>
+    <jstl:if test="${href==null}">
+        <div style="margin: 0px;padding: 0.7em 1em 0.7em 0.5em;${style}"
+             title="${tooltip}">
+            <img src="${src}" style="text-align:center;" class="${css}"/> </img>
+        </div>
+    </jstl:if>
 </display:column>
 
 

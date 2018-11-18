@@ -37,11 +37,19 @@ public class ChirpActorController extends AbstractController {
 
     // List ------------------------------------------------------------------
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(final Integer pageSize) {
+    public ModelAndView list(final Integer actorId, final Integer pageSize) {
         ModelAndView result;
         final Collection <Chirp> chirps;
-        chirps = this.chirpService.findByLoggedActor();
-        result = new ModelAndView("chirp/actor/list");
+        if (actorId != null) {
+            chirps = chirpService.findByActorId(actorId);
+            result = new ModelAndView("chirp/actor/stream");
+            result.addObject("legend", "actorChirps");
+            result.addObject("owner", actorService.findOne((actorId!=null)?actorId:-1).getUserAccount().getUsername());
+        } else {
+            chirps = this.chirpService.findByLoggedActor();
+            result = new ModelAndView("chirp/actor/list");
+            result.addObject("legend", "ownChirps");
+        }
         result.addObject("chirps", chirps);
         result.addObject("requestUri", "chirp/actor/list.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
@@ -55,44 +63,37 @@ public class ChirpActorController extends AbstractController {
         final Collection <Chirp> chirps = chirpService.findFollowedChirps();
         result = new ModelAndView("chirp/actor/stream");
         result.addObject("chirps", chirps);
+        result.addObject("legend", "followedChirps");
         result.addObject("requestUri", "chirp/actor/stream.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
         return result;
     }
+
     // List ------------------------------------------------------------------
     @RequestMapping(value = "/stream", method = RequestMethod.POST)
     public ModelAndView stream(HttpServletRequest req) {
-        ModelAndView result;
-        final Collection <Chirp> chirps = chirpService.findFollowedChirps();
-        result = new ModelAndView("chirp/actor/stream");
-        result.addObject("chirps", chirps);
-        result.addObject("requestUri", "chirp/actor/stream.do");
-        result.addObject("pageSize", (req.getParameter("pageSize") != null) ? req.getParameter("pageSize") : 5);
-        return result;
+        return stream(Integer.parseInt(req.getParameter("pageSize")));
     }
+
     // List by topic------------------------------------------------------------------
     @RequestMapping(value = "/topic/list", method = RequestMethod.GET)
     public ModelAndView listByTopic(String topic, final Integer pageSize) {
         ModelAndView result;
         final Collection <Chirp> chirps = chirpService.findByTopic(topic);
-        result = new ModelAndView("chirp/actor/list");
+        result = new ModelAndView("chirp/actor/stream");
         result.addObject("chirps", chirps);
         result.addObject("topic", topic);
+        result.addObject("legend", "topicChirps");
         result.addObject("requestUri", "chirp/actor/topic/list.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
         return result;
     }
+
     // List by topic------------------------------------------------------------------
     @RequestMapping(value = "/topic/list", method = RequestMethod.POST)
     public ModelAndView listingByTopic(HttpServletRequest req) {
-        ModelAndView result;
-        final Collection <Chirp> chirps = chirpService.findByTopic(req.getParameter("topic"));
-        result = new ModelAndView("chirp/actor/list");
-        result.addObject("chirps", chirps);
-        result.addObject("topic", req.getParameter("topic"));
-        result.addObject("requestUri", "chirp/actor/topic/list.do");
-        result.addObject("pageSize", (req.getParameter("pageSize") != null) ? req.getParameter("pageSize") : 5);
-        return result;
+        return listByTopic(req.getParameter("topic"),
+                Integer.parseInt((req.getParameter("pageSize")!=null)?req.getParameter("pageSize"):"5"));
     }
 
     // Display user -----------------------------------------------------------
@@ -104,8 +105,8 @@ public class ChirpActorController extends AbstractController {
             Assert.notNull(chirp, "msg.not.found.resource");
             result = new ModelAndView("chirp/actor/display");
             result.addObject("chirp", chirp);
-            Boolean subscribedToActor =  this.actorService.checkIfSubscribedToActor(chirp.getActor());
-            Boolean subscribedToTopic =  this.actorService.checkIfSubscribedToTopic(chirp);
+            Boolean subscribedToActor = this.actorService.checkIfSubscribedToActor(chirp.getActor());
+            Boolean subscribedToTopic = this.actorService.checkIfSubscribedToTopic(chirp);
             result.addObject("subscribedToActor", subscribedToActor);
             result.addObject("subscribedToTopic", subscribedToTopic);
             result.addObject("display", true);

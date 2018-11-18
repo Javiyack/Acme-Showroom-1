@@ -52,20 +52,19 @@
         <hr>
         <div class="row">
             <div class="col-100">
-                <legend>
+                <legend style="box-sizing: border-box">
                     <spring:message code="label.item"/>: <jstl:out value="${item.title}"/>
                     <jstl:if test="${item.id!=0}">
-                    <security:authorize access="isAuthenticated()">
                         <spring:message var="msgSaveFirst" code="msg.save.first"/>
                         <jstl:set var="url" value="/comment/actor/create.do?objectId=${item.id}"/>
                         <spring:message code="label.new" var="newTitle"/>
                         <spring:message code="label.comment" var="itemTitle"/>
-                        <a><i class="fa fa-commenting-o font-awesome w3-xxlarge toRight"
+                        <a><i class="fa fa-commenting-o font-awesome w3-xxlarge toRight w3-padding-small iOverSize"
                                onclick="showConditionalAlert('${msgSaveFirst}','${item.id}','${url}');"
                                title="${newTitle} ${itemTitle}"></i></a>
                         <a href="comment/actor/list.do?objectId=${item.id}">
-                            <i class="fa fa-comments-o font-awesome w3-xxlarge toRight w3-margin-right"></i></a>
-                    </security:authorize>
+                            <i class="fa fa-comments-o font-awesome w3-xxlarge toRight  w3-padding-small w3-margin-right iOverSize"></i></a>
+
                 </jstl:if>
                 </legend>
             </div>

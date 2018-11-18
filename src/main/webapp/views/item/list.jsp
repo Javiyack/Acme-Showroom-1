@@ -1,14 +1,4 @@
-<%--
- * list.jsp
- *
- * Copyright (C) 2017 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- --%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
+
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
@@ -35,22 +25,22 @@
     <jstl:set value="showroom/display.do" var="requestUri"/>
     <jstl:set value="true" var="included"/>
 </jstl:if>
-<div class="seccion w3-light-grey">
+<div class="seccion w3-light-gray">
     <legend>
         <spring:message code="label.items"/>
-        <jstl:if test="${showroomId != null and !included}">
+        <jstl:if test="${!included}">
+        <jstl:if test="${showroomName!=null}">
             <spring:message code="label.of"/>
             <jstl:out value="${showroomName}"/>
         </jstl:if>
+            <jstl:if test="${userList}">
+                <spring:message code="label.of"/>
+                <jstl:out value="${username}"/>
+            </jstl:if>
+        </jstl:if>
+
     </legend>
     <jstl:if test="${!items.isEmpty()}">
-        <jstl:if test="${included}">
-            <a href="item/list.do?showroomId=${showroom.id}&showroomName=${showroom.name}"
-               class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-diamond fa-fw"></i>  <spring:message
-                    code="label.show.all" />
-            </a>
-        </jstl:if>
             <jstl:if test="${!included}">
                 <form:form action="${requestUri}" method="POST">
                 <div class="row">
@@ -73,6 +63,13 @@
 
                 </div>
             </form:form>
+        </jstl:if>
+        <jstl:if test="${included}">
+            <a href="item/list.do?showroomId=${showroom.id}&showroomName=${showroom.name}"
+               class="w3-xlarge w3-hover-text-orange w3-margin-right"> <i
+                    class="fa fa-diamond fa-fw"></i>  <spring:message
+                    code="label.show.all" />
+            </a>
         </jstl:if>
     </jstl:if>
     <div style="overflow-x:auto;">
@@ -97,16 +94,19 @@
                 <jstl:set var="availableIcon" value="fa fa-square-o w3-xlarge"/>
             </jstl:if>
             <jstl:if test="${!included}">
-                <acme:urlColumn value="${row3.showroom.name}" title="label.showroom" href="${url}" css="iButton"/>
+                <acme:urlColumn value="${row3.showroom.name}" title="label.showroom" href="${url}" css="iButton" sortable="true"/>
             </jstl:if>
-            <acme:urlColumn value="${row3.SKU}" title="label.SKU" href="${url}" css="iButton"/>
-            <acme:urlColumn value="${row3.title}" title="label.name" href="${url}" css="iButton"/>
+            <acme:urlColumn value="${row3.SKU}" title="label.SKU" href="${url}" css="iButton" sortable="true"/>
+            <acme:urlColumn value="${row3.title}" title="label.name" href="${url}" css="iButton" sortable="true"/>
+            <acme:urlColumn value="${row3.showroom.user.userAccount.username}" title="label.name" href="${url}" css="iButton" sortable="true"/>
             <acme:urlColumn value="${row3.description}" title="label.description" href="${url}" css="iButton"/>
-            <acme:urlColumn value="${row3.price}" title="label.price" href="${url}" css="iButton"/>
-            <acme:urlColumn value="" icon="${availableIcon}" title="label.available" href="${url}" css="iButton" style="text-alig"/>
+            <acme:urlColumn value="${row3.price}" title="label.price" href="${url}" css="iButton" sortable="true"/>
+            <acme:urlColumn value="" icon="${availableIcon}" title="label.available" href="${url}" css="iButton" style="text-alig" sortable="true"/>
             <acme:urlColumn value="" title="label.none" icon="${icono}" href="${url}" css="iButton" style="text-align:center;"/>
         </display:table>
     </div>
+
+
     <jstl:if test="${showroom!=null and rol eq 'user' and logedActor eq showroom.user.userAccount}">
 
         <spring:message var="msgSaveFirst" code="msg.save.first"/>
@@ -114,7 +114,7 @@
         <spring:message code="label.new" var="newTitle"/>
         <spring:message code="label.item" var="itemTitle"/>
         <p>
-            <i class="fa fa-plus-square w3-text-dark-grey w3-hover-text-light-blue w3-xxlarge toRight w3-padding iButton"
+            <i class="fa fa-plus-square w3-text-dark-grey w3-hover-text-orange w3-xxlarge toRight w3-padding iButton"
                onclick="showConditionalAlert('${msgSaveFirst}','${showroom.id}','${url}');" title="${newTitle} ${itemTitle}"></i>
         </p>
     </jstl:if>
@@ -123,17 +123,17 @@
         <jstl:if test="${userList and rol eq 'user'}">
             <p>
                 <a href="item/list.do" >
-                    <i class="fa fa fa-filter w3-xxlarge w3-text-orange"
+                    <i class="fa fa fa-filter w3-xxlarge w3-text-orange w3-hover-text-gray iButton w3-padding w3-margin-right"
                        title="<spring:message code="label.show.all"/>">
-                </i> <spring:message code="label.show.all"/></a>
+                </i></a>
             </p>
         </jstl:if>
         <jstl:if test="${userList==null and rol eq 'user'}">
             <p>
                 <a href="item/user/list.do" >
-                    <i class="fa fa fa-filter w3-xxlarge w3-text-gray"
+                    <i class="fa fa fa-filter w3-xxlarge css-unchecked w3-hover-text-orange iButton w3-padding w3-margin-right"
                        title="<spring:message code="label.show.mine.only"/>"></i>
-                    <spring:message code="label.show.mine.only"/></a>
+                   </a>
             </p>
         </jstl:if>
     </jstl:if>

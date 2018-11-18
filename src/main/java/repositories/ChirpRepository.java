@@ -12,7 +12,7 @@ import java.util.Collection;
 @Repository
 public interface ChirpRepository extends JpaRepository<Chirp, Integer> {
     @Query("select c from Chirp c where c.actor.id=?1")
-    Collection<Chirp> findByActor(int user);
+    Collection<Chirp> findByActorId(int actorId);
 
     @Query("select distinct(c.topic) from Chirp c")
     Collection<String> findAllTopics();

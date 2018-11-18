@@ -63,11 +63,11 @@ public class ChirpService {
     public Collection <Chirp> findByLoggedActor() {
         final Actor actor = this.actorService.findByPrincipal();
         Assert.notNull(actor, "msg.not.logged.block");
-        return chirpRepository.findByActor(actor.getId());
+        return chirpRepository.findByActorId(actor.getId());
     }
 
-    public Collection <Chirp> findByUserId(Integer UserId) {
-        return chirpRepository.findByActor(UserId);
+    public Collection <Chirp> findByActorId(Integer actorId) {
+        return chirpRepository.findByActorId(actorId);
     }
 
     public Collection <String> findAllTopics() {

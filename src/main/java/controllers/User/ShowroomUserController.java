@@ -64,7 +64,10 @@ public class ShowroomUserController extends AbstractController {
         }
         result.addObject("showrooms", showrooms);
         result.addObject("userList", true);
-        result.addObject("word", word);result.addObject("requestUri", "showroom/user/list.do");
+        result.addObject("username", actorService.findByPrincipal().getUserAccount().getUsername());
+        result.addObject("userId", actorService.findByPrincipal().getId());
+        result.addObject("word", word);
+        result.addObject("requestUri", "showroom/list.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
         return result;
     }
