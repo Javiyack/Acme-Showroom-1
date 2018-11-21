@@ -84,28 +84,28 @@
                                         <acme:textbox code="label.photo" path="photo"
                                                       id="photo"/>
                                     </jstl:if>
-                                    <br>
-                                    <jstl:if test="${!subscribedToActor and !edition}">
-                                        <spring:message code="label.follow" var="actorTooltip"/>
-                                        <a href="subscription/actor/subscribe.do?actorId=${actorForm.id}
-                                        &redirectUrl=/actor/actor/display.do?actorId=${actorForm.id}">
-                                            <i class="fa fa-heart-o font-awesome w3-text-gray w3-margin-right w3-xxlarge"
-                                               title="${actorTooltip}"></i>
-                                        </a>
-                                    </jstl:if>
-
-                                    <jstl:if test="${subscribedToActor and !edition}">
-                                        <spring:message code="label.unfollow" var="actorTooltip"/>
-                                        <a href="subscription/actor/subscribe.do?actorId=${actorForm.id}
-                        &redirectUrl=/actor/actor/display.do?actorId=${actorForm.id}">
-                                            <i class="fa fa-heart font-awesome w3-text-red w3-margin-right w3-xxlarge"
-                                               title="${actorTooltip}"></i>
-                                        </a>
-
-                                    </jstl:if>
                                 </div>
                             </div>
                         </div>
+                    </jstl:if>
+                    <br>
+                    <jstl:if test="${!subscribedToActor and !edition}">
+                        <spring:message code="label.follow" var="actorTooltip"/>
+                        <a href="subscription/actor/subscribe.do?actorId=${actorForm.id}
+                                        &redirectUrl=/actor/actor/display.do?actorId=${actorForm.id}">
+                            <i class="fa fa-heart-o font-awesome w3-text-gray w3-margin-right w3-xxlarge"
+                               title="${actorTooltip}"></i>
+                        </a>
+                    </jstl:if>
+
+                    <jstl:if test="${subscribedToActor and !edition}">
+                        <spring:message code="label.unfollow" var="actorTooltip"/>
+                        <a href="subscription/actor/subscribe.do?actorId=${actorForm.id}
+                        &redirectUrl=/actor/actor/display.do?actorId=${actorForm.id}">
+                            <i class="fa fa-heart font-awesome w3-text-red w3-margin-right w3-xxlarge"
+                               title="${actorTooltip}"></i>
+                        </a>
+
                     </jstl:if>
 
                 </div>
@@ -235,10 +235,23 @@
             <div class="seccion w3-light-grey">
                 <div class="row">
                     <div class="col-50">
-                        <acme:backButton text="actor.back" css="formButton toLeft"/>
+                        <acme:backButton text="label.back" css="formButton toLeft"/>
                         <security:authorize access="isAuthenticated()">
-                            <acme:button text="label.follow" css="formButton toLeft"
-                                         url="subscription/actor/subscribe.do?actorId=${actorForm.id}&redirectUrl=/actor/actor/display.do?actorId=${actorForm.id}"/>
+
+                            <jstl:if test="${!edition}">
+                                <jstl:if test="${!subscribedToActor}">
+                                    <acme:button text="label.follow" css="formButton toLeft"
+                                                 url="subscription/actor/subscribe.do?actorId=${actorForm.id}&redirectUrl=/actor/actor/display.do?actorId=${actorForm.id}"/>
+
+                                </jstl:if>
+                                <jstl:if test="${subscribedToActor}">
+                                    <acme:button text="label.unfollow" css="formButton toLeft"
+                                                 url="subscription/actor/subscribe.do?actorId=${actorForm.id}&redirectUrl=/actor/actor/display.do?actorId=${actorForm.id}"/>
+
+                                </jstl:if>
+
+                            </jstl:if>
+
 
                         </security:authorize>
                     </div>

@@ -27,6 +27,3 @@
 		<h3 class="formPanel w3-padding w3-text-orange w3-xxxlarge" value="" id="wellcomeMsg"></h3>
 
 <p class="w3-bottom w3-padding-64"><spring:message code="welcome.greeting.current.time" />${moment}</p>
-<script>
-    asynchSearch('${pageContext.request.contextPath}','/asynchronous/msg/welcome.do', 'wellcomeMsg');
-</script>

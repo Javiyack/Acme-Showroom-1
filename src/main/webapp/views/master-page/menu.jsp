@@ -66,7 +66,7 @@
                                 <div class="w3-container w3-half">
                                     <i class="fa fa-user-plus w3-bar-item w3-large iButton
                                        w3-padding w3-margin-right font-awesome w3-text-dark-gray w3-hover-text-orange"
-                                       onclick="relativeRedir('/agent/create.do');">
+                                       onclick="relativeRedir('/welcome/comingsoon.do');">
                                         <spring:message code="actor.authority.AGENT"/>
                                     </i>
                                 </div>

@@ -173,7 +173,7 @@ function validatePhone(msg) {
     var str = document.getElementById("phone").value;
 
     //look for "Hello"
-    var patt = /^([+][1-9]\d{0,2}[ ]?[(][1-9]\d{0,2}[)][ ]?\d{4,32})$|^([+][0-9]{1,3}[ ]\d{4,32})$/g;
+    var patt = /^([+][1-9]\d{0,2}[ ]?[(][1-9]\d{0,2}[)][ ]?\d{4,32})$|^([+][0-9]{1,3}[ ]?\d{4,32})$/g;
     var matchPatern = patt.test(str);
     if (!matchPatern) {
         if (confirm(msg)) {

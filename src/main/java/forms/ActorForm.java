@@ -2,6 +2,7 @@
 package forms;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -119,7 +120,7 @@ public class ActorForm {
 
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@Size(min = 5,max = 32)
+	@Size(min = 1,max = 32)
 	public String getName() {
 		return this.name;
 	}
@@ -130,7 +131,7 @@ public class ActorForm {
 
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@Size(min = 5,max = 32)
+	@Size(min = 1,max = 32)
 	public String getSurname() {
 		return this.surname;
 	}
@@ -150,9 +151,9 @@ public class ActorForm {
 		this.email = email;
 	}
 
-	//@Pattern(regexp = "[0-9+()]{4,32}")
+	@Pattern(regexp = "^[0-9+() ]{0,9}.{4,32}$")
 	@NotBlank
-	@Size(min = 4,max = 32)
+	@Size(min = 4,max = 41)
 	public String getPhone() {
 		return this.phone;
 	}

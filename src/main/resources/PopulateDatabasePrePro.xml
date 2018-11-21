@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2017 Universidad de Sevilla 
+	* * The use of this project is hereby consipained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Admin accounts -->
+
+    <bean id="userAccountAdmin" class="security.UserAccount">
+        <property name="username" value="admin"/>
+        <property name="password"
+                  value="21232f297a57a5a743894a0e4a801fc3"/>
+        <property name="authorities">
+            <list>
+                <bean class="security.Authority">
+                    <property name="authority" value="ADMINISTRATOR"/>
+                </bean>
+            </list>
+        </property>
+        <property name="active" value="true"/>
+    </bean>
+
+    <!-- User accounts -->
+
+
+    <!-- Actors -->
+
+    <!-- Administrators Actors -->
+
+    <bean id="administrator1" class="domain.Administrator">
+        <property name="name" value="Javier"/>
+        <property name="surname" value="Llach"/>
+        <property name="email" value="javierll@gmail.com"/>
+        <property name="phone" value="666777888"/>
+        <property name="address" value="C/ Beatriz de Suabia 76."/>
+        <property name="userAccount" ref="userAccountAdmin"/>
+        <property name="follows">
+            <list>
+            </list>
+        </property>
+        <property name="topics">
+            <list>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Users Actors-->
+
+    <!-- Showrooms -->
+
+    <!-- Items -->
+
+
+</beans>
